@@ -16,7 +16,8 @@ export default function RootLayout({
     <html
       lang='fa'
       dir='rtl'>
-      <body className={`${vazirFont.variable} font-sans min-h-screen`}>
+      <body
+        className={`${vazirFont.variable} bg-secondary-900 min-h-screen font-sans`}>
         {children}
       </body>
     </html>
