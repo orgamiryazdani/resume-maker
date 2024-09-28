@@ -1,7 +1,7 @@
 export const userData = [
     {
       name: "امیر یزدانی",
-      title: "front end developer",
+      title: "توسعه دهنده فرانت اند",
       contact: {
         location: "شیراز، ایران",
         email: "orgamiryazdani@gmail.com",
@@ -31,7 +31,7 @@ export const userData = [
         {
           name: "resumer-make",
           description: "وبسایت رزومه ساز",
-          links: [{ name: "لینک لایو", link: "https://test.com" }],
+          links: [{ name: "لینک لایو", link: "https://test.com" },{ name: "لینک لایو", link: "https://test.com" }],
           date: "شهریور 1402 - مهر 1401",
         },
       ],
@@ -41,6 +41,7 @@ export const userData = [
           company: "sant.ir",
           responsibilities: "توسعه وبسایت sant",
           date: "شهریور 1402 - مهر 1401",
+          links: [{ name: "لینک لایو", link: "https://test.com" },{ name: "لینک لایو", link: "https://test.com" }],
         },
       ],
       languages: [

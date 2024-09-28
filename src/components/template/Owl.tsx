@@ -1,81 +1,76 @@
 import { userData } from "@/fakeData";
-import { FC } from "react";
 
-const Owl: FC = () => {
+export default function Owl() {
   return (
     <>
       {userData.map((user) => (
         <div
           key={user.title}
-          className='bg-white font-sans'>
-          <main className='container mx-auto p-6 max-w-[210mm] min-h-[297mm]'>
-            <header className='text-center mb-6'>
-              <h1 className='text-3xl font-bold text-gray-800 mb-1'>
-                {user.name}
-              </h1>
-              <p className='text-lg text-gray-600 mb-2'>{user.title}</p>
-              <address className='not-italic text-sm'>
-                <ul className='flex justify-center space-x-3 rtl:space-x-reverse'>
-                  <li className='text-gray-600'>
-                    <i className='fas fa-map-marker-alt'></i>{" "}
-                    {user.contact.location}
-                  </li>
-                  <li className='text-gray-600'>
-                    <a
-                      href={`mailto:${user.contact.email}`}
-                      className='hover:text-blue-500'>
-                      <i className='fas fa-envelope'></i> {user.contact.email}
-                    </a>
-                  </li>
-                  <li className='text-gray-600'>
-                    <a
-                      href={`tel:+ ${user.contact.phone}`}
-                      className='hover:text-blue-500'>
-                      <i className='fas fa-phone'></i> {user.contact.phone}
-                    </a>
-                  </li>
-                </ul>
-              </address>
-
-              <nav className='mt-2'>
-                <ul className='flex justify-center space-x-3 rtl:space-x-reverse text-sm'>
-                  {user.socialLinks.map((link) => (
-                    <li key={link.name}>
-                      <a
-                        href={link.url}
-                        className='text-blue-500 hover:text-blue-700'>
-                        {link.name}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </nav>
+          className='bg-white font-sans p-8'>
+          <main className='max-w-[210mm] mx-auto'>
+            <header className='mb-4 text-right'>
+              <div className='flex items-baseline space-x-4 rtl:space-x-reverse mb-2'>
+                <h1 className='text-3xl font-bold text-gray-800'>
+                  {user.name}
+                </h1>
+                <p className='text-xl text-gray-600'>{user.title}</p>
+              </div>
+              <div className='flex items-center gap-x-3 text-sm'>
+                <address className='not-italic'>
+                  <span className='text-gray-600'>{user.contact.location}</span>
+                  <a
+                    href={`tel:${user.contact.phone}`}
+                    className='text-gray-600 hover:text-gray-800 transition-colors'>
+                    {user.contact.phone}
+                  </a>
+                  <a
+                    href={`mailto:${user.contact.email}`}
+                    className='text-gray-600 hover:text-gray-800 transition-colors mx-3'>
+                    {user.contact.email}
+                  </a>
+                </address>
+                <nav>
+                  <ul className='flex gap-x-3'>
+                    {user.socialLinks.map((link) => (
+                      <li key={link.name}>
+                        <a
+                          href={link.url}
+                          className='text-blue-600 hover:text-blue-800 transition-colors'>
+                          {link.name}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </nav>
+              </div>
             </header>
 
             <section
-              className='mb-6'
-              aria-labelledby='about-heading'>
+              aria-labelledby='about-heading'
+              className='mb-4'>
               <h2
                 id='about-heading'
-                className='text-xl font-bold text-gray-800 mb-2'>
+                className='text-lg font-bold text-gray-800 mb-2'>
                 درباره من
               </h2>
-              <p className='text-sm text-gray-700'>{user.about}</p>
+              <p className='text-gray-700 leading-relaxed text-sm'>
+                {user.about}
+              </p>
             </section>
 
             <section
-              className='mb-6'
-              aria-labelledby='skills-heading'>
+              aria-labelledby='skills-heading'
+              className='mb-4'>
               <h2
                 id='skills-heading'
-                className='text-xl font-bold text-gray-800 mb-2'>
+                className='text-lg font-bold text-gray-800 mb-2'>
                 مهارت‌ها
               </h2>
-              <ul className='flex flex-wrap text-sm'>
+              <ul className='flex flex-wrap -m-1'>
                 {user.skills.map((skill) => (
                   <li
                     key={skill}
-                    className='bg-gray-200 text-gray-700 px-2 py-1 rounded-full text-xs font-semibold mr-2 mb-2'>
+                    className='m-1 bg-gray-200 text-gray-700 px-2 py-1 rounded-md text-xs font-medium'>
                     {skill}
                   </li>
                 ))}
@@ -83,72 +78,72 @@ const Owl: FC = () => {
             </section>
 
             <section
-              className='mb-6'
-              aria-labelledby='projects-heading'>
+              aria-labelledby='projects-heading'
+              className='mb-4'>
               <h2
                 id='projects-heading'
-                className='text-xl font-bold text-gray-800 mb-2'>
+                className='text-lg font-bold text-gray-800 mb-1'>
                 پروژه‌ها
               </h2>
               <ul className='space-y-4'>
                 {user.project.map((project) => (
-                  <li
-                    key={project.name}
-                    className='border-b pb-4'>
-                    <h3 className='text-lg font-semibold mb-1'>
-                      {project.name}
-                    </h3>
-                    <p className='text-sm text-gray-600 mb-1'>
-                      {project.description}
-                    </p>
-                    {project.links.map((link) => (
-                      <a
-                        key={link.name}
-                        href={link.link}
-                        className='text-sm text-blue-500 hover:text-blue-700'>
-                        {link.name}
-                      </a>
-                    ))}
+                  <li key={project.name}>
+                    <div className="flex items-center gap-x-1">
+                      <h3 className='text-base font-semibold text-gray-800'>{project.name}</h3>
+                      |
+                      <h3 className="text-xs font-normal text-gray-500 mb-1">{project.date}</h3>
+                    </div>
+                    <p className='text-gray-600 text-sm mb-1'>{project.description}</p>
+                    <div className='flex space-x-3 rtl:space-x-reverse'>
+                      {project.links.map((link) => (
+                        <a
+                          key={link.name}
+                          href={link.link}
+                          className='text-blue-600 text-[13px] hover:text-blue-800 transition-colors'>
+                          {link.name}
+                        </a>
+                      ))}
+                    </div>
                   </li>
                 ))}
               </ul>
             </section>
 
             <section
-              className='mb-6'
-              aria-labelledby='experience-heading'>
+              aria-labelledby='experience-heading'
+              className='mb-4'>
               <h2
                 id='experience-heading'
-                className='text-xl font-bold text-gray-800 mb-2'>
+                className='text-lg font-bold text-gray-800 mb-1'>
                 سوابق شغلی
               </h2>
               <ul className='space-y-4'>
                 {user.experience.map((exp) => (
                   <li key={exp.title}>
-                    <h3 className='text-lg font-semibold'>{exp.title}</h3>
-                    <p className='text-sm text-gray-600'>
+                    <h3 className='text-sm font-semibold mb-1 text-gray-800'>
+                      {exp.title}
+                    </h3>
+                    <p className='text-gray-600 text-[13px] mb-1'>
                       {exp.company} | {exp.date}
                     </p>
-                    <ul className='list-disc list-inside text-sm text-gray-700 mt-1'>
-                      <li>{exp.responsibilities}</li>
-                    </ul>
+                    <p className='text-gray-700 text-sm mb-1'>{exp.responsibilities}</p>
                   </li>
                 ))}
               </ul>
             </section>
 
             <section
-              className='mb-6'
-              aria-labelledby='languages-heading'>
+              aria-labelledby='languages-heading'
+              className='mb-4'>
               <h2
                 id='languages-heading'
-                className='text-xl font-bold text-gray-800 mb-2'>
+                className='text-lg font-bold text-gray-800 mb-1'>
                 زبان‌ها
               </h2>
-              <ul className='list-disc list-inside text-sm text-gray-700'>
+              <ul className='list-disc list-inside text-gray-700'>
                 {user.languages.map((language) => (
-                  <li key={language.title}>
-                    {language.title} ( {language.level} )
+                  <li key={language.title} className="text-[13px]">
+                    {language.title} ({language.level})
                   </li>
                 ))}
               </ul>
@@ -157,16 +152,16 @@ const Owl: FC = () => {
             <section aria-labelledby='education-heading'>
               <h2
                 id='education-heading'
-                className='text-xl font-bold text-gray-800 mb-2'>
+                className='text-lg font-bold text-gray-800 mb-1'>
                 سوابق تحصیلی
               </h2>
               <ul className='space-y-2'>
                 {user.educations.map((education) => (
                   <li key={education.degree}>
-                    <h3 className='text-lg font-semibold'>
+                    <h3 className='text-sm font-semibold mb-1 text-gray-800'>
                       {education.degree}
                     </h3>
-                    <p className='text-sm text-gray-600'>
+                    <p className='text-gray-600 text-[13px]'>
                       {education.institution} | {education.date}
                     </p>
                   </li>
@@ -178,6 +173,4 @@ const Owl: FC = () => {
       ))}
     </>
   );
-};
-
-export default Owl;
+}
