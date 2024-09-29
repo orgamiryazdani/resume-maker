@@ -1,4 +1,4 @@
-import Owl from "@/components/template/Owl";
+import Aurora from "@/components/template/Aurora/Aurora";
 
 export default function Home() {
   return (
@@ -13,7 +13,7 @@ export default function Home() {
       </section>
       {/* resume template */}
       <section className='w-1/2 h-full overflow-y-auto p-5'>
-        <Owl />
+        <Aurora />
       </section>
     </section>
   );
