@@ -25,7 +25,7 @@ const Info: FC<InfoProps> = ({ name, title, contact, socialLinks }) => {
         <nav>
           <ul className='flex gap-x-3'>
             {socialLinks.map((link) => (
-              <li key={link.name}>
+              <li key={link.id}>
                 <a
                   href={link.url}
                   className='text-blue-600 hover:text-blue-800 transition-colors'>

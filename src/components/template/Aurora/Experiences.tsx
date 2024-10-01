@@ -13,7 +13,7 @@ const Experiences: FC<{ experiences: experience[] }> = ({ experiences }) => {
       </h2>
       <ul className='space-y-2'>
         {experiences.map((experience) => (
-          <li key={experience.title}>
+          <li key={experience.id}>
             <h3 className='text-sm font-semibold mb-1 text-gray-800'>
               {experience.title}
             </h3>

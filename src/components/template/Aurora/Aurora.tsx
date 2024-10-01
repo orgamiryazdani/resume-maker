@@ -66,8 +66,9 @@ export default function Aurora() {
   };
 
   return (
-    <div className='bg-white font-sans p-8'>
-      <main className='max-w-[210mm] mx-auto'>
+    <div className='bg-white font-sans space-y-10 p-8 max-w-[21cm] max-h-[25cm]'>
+      <main
+        className='mx-auto bg-red-500'>
         {/* info section */}
         <Info
           name={name}

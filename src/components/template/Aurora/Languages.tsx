@@ -14,7 +14,7 @@ const Languages: FC<{ languages: language[] }> = ({ languages }) => {
       <ul className='list-disc list-inside text-gray-700'>
         {languages.map((language) => (
           <li
-            key={language.title}
+            key={language.id}
             className='text-[13px]'>
             {language.title} ({language.level})
           </li>

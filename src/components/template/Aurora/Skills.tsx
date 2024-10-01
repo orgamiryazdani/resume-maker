@@ -14,9 +14,9 @@ const Skills: FC<skills> = ({ skills }) => {
       <ul className='flex flex-wrap -m-1'>
         {skills.map((skill) => (
           <li
-            key={skill}
+            key={skill.id}
             className='m-1 bg-gray-200 text-gray-700 px-2 py-1 rounded-md text-xs font-medium'>
-            {skill}
+            {skill.name}
           </li>
         ))}
       </ul>

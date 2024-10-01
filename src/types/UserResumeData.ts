@@ -4,11 +4,12 @@ export interface contact {
     phone: string;
 }
 
-export interface socialLink { name: string; url: string }
+export interface socialLink { id: number; name: string; url: string }
 
-export interface link { name: string; link: string };
+export interface link {id:number; name: string; link: string };
 
 export interface project {
+    id: number;
     name: string;
     description: string;
     links: link[];
@@ -16,6 +17,7 @@ export interface project {
 }
 
 export interface experience {
+    id: number;
     title: string;
     company: string;
     responsibilities: string;
@@ -24,17 +26,19 @@ export interface experience {
 }
 
 export interface language {
+    id: number;
     title: string;
     level: string;
 }
 
 export interface education {
+    id: number;
     degree: string;
     institution: string;
     date: string;
 }
 
-export interface skills { skills: string[] }
+export interface skills { skills: { id: number; name: string }[] }
 
 export interface UserResumeData {
     name: string;
