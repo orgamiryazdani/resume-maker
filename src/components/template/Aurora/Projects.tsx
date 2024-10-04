@@ -13,7 +13,7 @@ const Projects: FC<{ projects: project[] }> = ({ projects }) => {
       </h2>
       <ul className='space-y-2'>
         {projects.map((project) => (
-          <li key={project.name}>
+          <li key={project.id}>
             <div className='flex items-center gap-x-1'>
               <h3 className='text-base font-semibold text-gray-800'>
                 {project.name}
@@ -27,7 +27,7 @@ const Projects: FC<{ projects: project[] }> = ({ projects }) => {
             <div className='flex space-x-3 rtl:space-x-reverse'>
               {project.links.map((link) => (
                 <a
-                  key={link.name}
+                  key={link.id}
                   href={link.link}
                   className='text-blue-600 text-[13px] hover:text-blue-800 transition-colors'>
                   {link.name}

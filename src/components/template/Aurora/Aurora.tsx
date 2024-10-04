@@ -8,20 +8,7 @@ import Languages from "./Languages";
 import Educations from "./Educations";
 import { userData } from "@/fakeData";
 import { useState } from "react";
-import {
-  closestCenter,
-  DndContext,
-  DragEndEvent,
-  PointerSensor,
-  useSensor,
-  useSensors,
-} from "@dnd-kit/core";
-import {
-  arrayMove,
-  SortableContext,
-  verticalListSortingStrategy,
-} from "@dnd-kit/sortable";
-import SortableItem from "@/components/SortableItem";
+import SortableSection from "@/components/SortableSection";
 
 export default function Aurora() {
   const {
@@ -37,37 +24,28 @@ export default function Aurora() {
     educations,
   } = userData;
 
-  const [sectionsOrder, setSectionsOrder] = useState<string[]>([
+  const initialSectionsOrder = [
     "skills",
     "projects",
     "experiences",
     "languages",
     "educations",
-  ]);
+  ];
 
-  const sensors = useSensors(
-    useSensor(PointerSensor, {
-      activationConstraint: {
-        distance: 5,
-      },
-    }),
-  );
+  const [sectionsOrder, setSectionsOrder] =
+    useState<string[]>(initialSectionsOrder);
 
-  const handleDragEnd = (event: DragEndEvent) => {
-    const { active, over } = event;
-
-    if (over && active.id !== over?.id) {
-      setSectionsOrder((items) => {
-        const oldIndex = items.indexOf(active.id as string);
-        const newIndex = items.indexOf(over.id as string);
-        return arrayMove(items, oldIndex, newIndex);
-      });
-    }
+  const sectionsMap: { [key: string]: React.ReactNode } = {
+    skills: <Skills skills={skills} />,
+    projects: <Projects projects={projects} />,
+    experiences: <Experiences experiences={experiences} />,
+    languages: <Languages languages={languages} />,
+    educations: <Educations educations={educations} />,
   };
 
   return (
-    <div className='bg-white font-sans p-8'>
-      <main className='max-w-[210mm] mx-auto'>
+    <div className='bg-white font-sans space-y-10 p-8 max-w-[21cm] max-h-[25cm]'>
+      <main className='mx-auto'>
         {/* info section */}
         <Info
           name={name}
@@ -77,67 +55,14 @@ export default function Aurora() {
         />
         {/* about section */}
         <About about={about} />
-        {/* dnd-kit */}
-        <DndContext
-          sensors={sensors}
-          collisionDetection={closestCenter}
-          onDragEnd={handleDragEnd}>
-          <SortableContext
-            items={sectionsOrder}
-            strategy={verticalListSortingStrategy}>
-            {sectionsOrder.map((sectionId) => {
-              switch (sectionId) {
-                //  skills section
-                case "skills":
-                  return (
-                    <SortableItem
-                      key='skills'
-                      id='skills'>
-                      <Skills skills={skills} />
-                    </SortableItem>
-                  );
-                //  projects section
-                case "projects":
-                  return (
-                    <SortableItem
-                      key='projects'
-                      id='projects'>
-                      <Projects projects={projects} />
-                    </SortableItem>
-                  );
-                // experiences section
-                case "experiences":
-                  return (
-                    <SortableItem
-                      key='experiences'
-                      id='experiences'>
-                      <Experiences experiences={experiences} />
-                    </SortableItem>
-                  );
-                //  Languages section
-                case "languages":
-                  return (
-                    <SortableItem
-                      key='languages'
-                      id='languages'>
-                      <Languages languages={languages} />
-                    </SortableItem>
-                  );
-                //  educations section
-                case "educations":
-                  return (
-                    <SortableItem
-                      key='educations'
-                      id='educations'>
-                      <Educations educations={educations} />
-                    </SortableItem>
-                  );
-                default:
-                  return null;
-              }
-            })}
-          </SortableContext>
-        </DndContext>
+        {/* dnd-kit برای ترتیب بخش‌ها */}
+        <SortableSection
+          id='main-sections'
+          items={sectionsOrder}
+          setItems={setSectionsOrder}
+          getItemId={(sectionId) => sectionId}
+          renderItem={(sectionId) => sectionsMap[sectionId]}
+        />
       </main>
     </div>
   );

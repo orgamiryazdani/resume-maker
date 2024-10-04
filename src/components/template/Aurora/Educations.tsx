@@ -3,7 +3,7 @@ import { FC } from "react";
 
 const Educations: FC<{ educations: education[] }> = ({ educations }) => {
   return (
-    <section aria-labelledby='education-heading'>
+    <section aria-labelledby='education-heading' className="mb-4">
       <h2
         id='education-heading'
         className='text-lg font-bold text-gray-800 mb-1'>
@@ -11,7 +11,7 @@ const Educations: FC<{ educations: education[] }> = ({ educations }) => {
       </h2>
       <ul className='space-y-2'>
         {educations.map((education) => (
-          <li key={education.degree}>
+          <li key={education.id}>
             <h3 className='text-sm font-semibold mb-1 text-gray-800'>
               {education.degree}
             </h3>

@@ -1,7 +1,10 @@
-import { skills } from "@/types/UserResumeData";
-import { FC } from "react";
+import { FC, useState } from "react";
+import SortableSection from "@/components/SortableSection";
+import { skills as SkillsType } from "@/types/UserResumeData";
 
-const Skills: FC<skills> = ({ skills }) => {
+const Skills: FC<SkillsType> = ({ skills }) => {
+  const [skillsOrder, setSkillsOrder] = useState(skills);
+
   return (
     <section
       aria-labelledby='skills-heading'
@@ -11,14 +14,18 @@ const Skills: FC<skills> = ({ skills }) => {
         className='text-lg font-bold text-gray-800 mb-2'>
         مهارت‌ها
       </h2>
-      <ul className='flex flex-wrap -m-1'>
-        {skills.map((skill) => (
-          <li
-            key={skill}
-            className='m-1 bg-gray-200 text-gray-700 px-2 py-1 rounded-md text-xs font-medium'>
-            {skill}
-          </li>
-        ))}
+      <ul className='flex flex-wrap'>
+        <SortableSection
+          id='skills-section'
+          items={skillsOrder}
+          setItems={setSkillsOrder}
+          getItemId={(skill) => skill.id}
+          renderItem={(skill) => (
+            <li className='m-1 bg-gray-200 text-gray-700 px-2 py-1 rounded-md text-xs font-medium'>
+              {skill.name}
+            </li>
+          )}
+        />
       </ul>
     </section>
   );
